@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+
+    <!-- Normalize.css -->
+    <link rel="stylesheet" href="stylesheets/normalize.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Piazzolla:opsz,wght@8..30,400;8..30,700&display=swap">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/d5d188f750.js" crossorigin="anonymous"></script>
+
+    <!-- My Styles -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/style-mobile.css">
+    <link rel="stylesheet" href="stylesheets/style-tablet.css">
+    <link rel="stylesheet" href="stylesheets/style-laptop.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icon2.png">
+</head>
+
+<body class="work">
+    <header class="header">
+        <div class="header-logo">
+            <img class="header-logo-img" src="images/image-logo.svg" alt="logo">
+            <span class="header-logo-title">Kantaro Kitagawa</span>
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-menu">
+                <li class="header-nav-menu-item"><a href="index.html">Home</a></li>
+                <li class="header-nav-menu-item"><a href="index.html#works">Search</a></li>
+                <li class="header-nav-menu-item"><a href="index.html#about">About</a></li>
+                <li class="header-nav-menu-item"><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <section class="main-hero">
+            <div class="main-hero-container container">
+                <div class="main-hero-highlight">
+                    <h1>〜研究内容〜</h1>
+                </div>
+            </div>
+        </section>
+        <section class="main-article">
+            <h2></i>マルチエージェント強化学習を用いたニューラル機械翻訳の連携</h2>
+            <div class="main-article-container container">
+                <div class="main-article-topic">
+                    <img src="images/programming.png" alt="Work A1">
+                    <h3>概要</h3>
+                    <p>ニューラル機械翻訳（Neural Machine Translation，NMT）の誕生により近年，機械翻訳の精度がより一層高くなり，世間から大きな注目を集めている．このような高精度のニューラル機械翻訳を構築するためには，高品質の対訳データが大量に必要となる．従来，web上の大量の対訳データを集めることで，汎用的なニューラル機械翻訳が構築されてきた．このようなニューラル機械翻訳を特定のドメインに特化した高品質な対訳データで再学習することでカスタマイズが行われてきた．しかしながら，特定のドメインに特化した高品質な対訳データを一組織で構築するには膨大なコストがかかる．複数の組織が対訳データを共有するにも，著作権やセキュリティ等の問題で対訳データを共有することが難しい．
+                    </p>
+                    <p>このような問題を解決するために，各自の持つデータを秘匿にしたまま，各データ所有者の下で学習したモデルを連携させる連合学習が用いられている．連合学習では，データではなく，各クライアントで構築されたモデルをサーバで集約して合成し，クライアントに分配する．クライアントでは，各自のデータを用いて，合成されたモデルを再学習し，再度サーバにモデルを送付する．このクライアントでの学習とサーバでの合成を繰り返すことで，全クライアントが協働でモデルを改善していくことができる．この連合学習により，ユーザ間での対訳データの共有が不要となり，組織内に蓄積された非公開の大量の対訳データの利用を促進することが期待されている．しかしながら，各データ所有者の持つデータの分布がそれぞれ異なっている場合，連合学習において非独立同一分布（Non-independent and identically distrib-uted (Non-iid)）と呼び，モデルの精度低下に繋がるため，全ての翻訳モデルを統合することが，必ずしも全てのクライアントの翻訳モデルの精度向上に繋がるとは限らない．
+                    </p>
+                    <p>そこで，私は連合学習において，集約プロセスのたびに動的に連携相手を選択し，翻訳モデルを統合するマルチエージェントシステムを提案し研究している．エージェントは各クライアントに配置され，報酬を最大化させる方策を獲得するために深層強化学習を用いる．
+                    </p>
+                </div>
+                <div class="main-article-topic">
+                    <img src="images/FL.png" alt="Work A2">
+                    <h3>連合学習</h3>
+                    <p>連合学習（Federated Learning）は，2016年に提唱された分散型の機械学習手法である．連合学習では，参加する各組織が所有する学習データを共有せずに，機械学習モデルの学習に必要な情報だけをローカルで計算し共有する．つまり，各組織は自身のデータを保持しながら，学習モデルの学習に寄与し，複数の組織間での協力的な学習が実現される．一般的に連合学習は複数のクライアントと一つのサーバから構成され，以下のような流れで学習する.
+                    </p>
+                    <p>まず，サーバはランダムに設定された初期モデルを生成する．次に，モデルを各クライアントに配布する(上図①)．各クライアントは受信したモデルを使用して，ローカルで規定のステップのNMTの学習を行う(上図②)．そして，各クライアントは学習を終えると，学習済みのモデルをサーバに送信する(上図③)．受け取ったサーバは，モデルを集約する．その後①から③の動作を再び実行し，これを規定回数繰り返す．
+                    </p>
+                </div>
+                <div class="main-article-topic">
+                    <img src="images/soccer.png" alt="Work A1">
+                    <h3>マルチエージェント強化学習</h3>
+                    <p>強化学習とは，教師データを事前に与えられず，かつ観測可能な情報が行動によって変化する状況で，最適な行動の系列を見つけることを目指す機械学習の一種である．強化学習の一般的なケースは，自律的に動く主体が周囲に影響を与える場合であり，行動する主体をエージェント(Agent)，影響を受ける対象を環境(Environment)と呼ぶ.エージェントが環境に対して行動することを行動(action)と呼び，エージェントの行動によって変化する環境の要素を状態(state)と呼ぶ．エージェントがどの行動を選択するかによってその後の状態が変わる．また，強化学習では，未知の環境でのエージェントの行動の良し悪しを評価する指標として報酬(reward)と呼ばれるスカラー値が利用されている.
+                    </p>
+                    <p>実際の世界では，ある環境内に複数のエージェントが同時に存在することは一般的である．同じ環境で複数の強化学習のエージェントが同時に学習，行動し，お互いに影響し合う自律分散型システムをマルチエージェント強化学習(Multiagent reinforcement learning，MARL)と呼ぶ．マルチエージェント深層強化学習を用いることで，将来的なモデル精度の期待値を考慮し，最適な協調パートナーを選択することができる．
+                    </p>
+                    <p>マルチエージェント強化学習の例としてサッカーの戦略がある．サッカーにおいてマルチエージェント強化学璒を用いる場合，各プレイヤー（エージェント）は特定の報酬関数を基に行動を選択する．報酬関数はゴールを獲得すること，パスを成功させること，相手チームからボールを奪うことなど，サッカーの試合で望ましい結果をもたらす行動を促進するように設定される．
+                    </p>
+                </div>
+               <div class="main-article-topic">
+                    <img src="images/MARL.png" alt="Work A3">
+                    <h3>マルチエージェント強化学習を用いた連合学習</h3>
+                    <p>各エージェントは深層強化学習により方策を獲得し、その方策に従って最適な協調パートナーを選択する。
+                        エージェントは各クライアントに配置され，報酬を最大化させる方策を獲得するために深層強化学習を用いる．
+                    </p>
+
+                </div>
+            </div>
+        </section>
+        <!-- <section class="main-works">
+            <h2><i class="fas fa-palette"></i>Read Next</h2>
+            <div class="container">
+                <div class="main-works-item">
+                    <figure class="main-works-item-img secondary">
+                        <img src="images/image-work-b.jpg" alt="Work B">
+                    </figure>
+                    <div class="main-works-item-text">
+                        <h3>過去のお仕事 2</h3>
+                        <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+                        </p>
+                        <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+                        </p>
+                        <a href="work.html" class="button button-secondary">もっと読む</a>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
+    <footer id="contact" class="footer">
+        <div class="footer-container container">
+            <div class="footer-form">
+                <p>お問い合わせはこちらからどうぞ｡</p>
+                <form action="action.php" method="post" name="contact-form">
+                    <div class="footer-form-input">
+                        <i class="far fa-user"></i>
+                        <input type="text" placeholder="氏名">
+                    </div>
+                    <div class="footer-form-input">
+                        <i class="far fa-envelope"></i>
+                        <input type="email" placeholder="メールアドレス">
+                    </div>
+                    <div class="footer-form-textarea">
+                        <textarea placeholder="お問い合わせ内容"></textarea>
+                    </div>
+                    <input type="submit" value="送信する" class="button button-primary">
+                </form>
+            </div>
+            <div class="footer-info">
+                <div class="footer-info-nav">
+                    <img class="footer-info-nav-img" src="images/image-logo.svg" alt="logo">
+                    <nav class="footer-info-nav-menu">
+                        <ul>
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#works">Search</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer-info-follow">
+                    <ul class="social-links">
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-medium"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p class="footer-info-copy">
+                    <small>© 2022 Elle Kasai. All Rights Reserved.</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
