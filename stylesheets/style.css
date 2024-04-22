@@ -229,6 +229,11 @@ input[type="submit"]:hover {
   color: #AB9698;
 }
 
+.main-about-container ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+
 /* --------------------------------------
   Footer
 -------------------------------------- */
